@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import logo from '../assets/personal-center-human-shape.png';
+import styled from "styled-components";
+import logo from "../assets/personal-center-human-shape.png";
 
 const OutmostWrapper = styled.div`
   display: flex;
@@ -25,15 +25,15 @@ const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: gray;
-  width: 100px;
-  height: 100px;
+  background-color: red;
+  width: 40px;
+  height: 40px;
 `;
 
 const Logo = styled.img.attrs({
   src: logo,
-  width: '70%',
-  height: '70%',
+  width: "100%",
+  height: "100%",
 })``;
 
 const UserInfo = styled.div`
