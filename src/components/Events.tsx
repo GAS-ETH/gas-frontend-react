@@ -4,6 +4,8 @@ import { Event } from '../types';
 
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   flex-direction: row;
   gap: 40px;
   height: 100%;
