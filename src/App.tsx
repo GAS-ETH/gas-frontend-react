@@ -102,7 +102,6 @@ const router = createBrowserRouter([
         children: [{ path: "eventas", element: <Events events={events} /> }],
       },
       { path: "events/:eventId", element: <EventDetailsPage /> },
-      // { path: 'products/:productId', element: <ProductDetailPage /> },
     ],
   },
   { path: "sign-up", element: <SignUp /> },

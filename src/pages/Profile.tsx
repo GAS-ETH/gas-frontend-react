@@ -5,14 +5,14 @@ import { Outlet } from "react-router-dom";
 import { BlueSpan, Section, SectionHeader } from "./EventsPage";
 import logo from "../assets/personal-center-human-shape.png";
 import { useEffect, useState } from "react";
-import { viewTokenURI } from "../services/wallet/ethers";
+import { viewTokenURI, viewTokenURIForPoap } from "../services/wallet/ethers";
 import store from "./../store/Store";
 import { useSelector } from "react-redux";
 import { getPoapsByIPFS, getTokensPerWallet } from "../services/poap/poap.http";
 
 // TODO: GET REAL ADDRESS
-// const contractAddress = "0x7bcf50180aa066c2a9313ab019fcb2c1da432dd6";
-const contractAddress = "0x4DfAB1fBB08289218eA8301358869a556644Aa2D";
+const contractAddress = "0x7bcf50180aa066c2a9313ab019fcb2c1da432dd6";
+// const contractAddress = "0x4DfAB1fBB08289218eA8301358869a556644Aa2D";
 // const contractAddress = "0x64Df6edb98c1417c90E2E596fd50595563Ea512d";
 
 //view token uir
@@ -239,7 +239,43 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
+const getTokenURI = async (tokenIds: { id: string }[], signer: any) => {
+  for await (const token of tokenIds) {
+    const URL_RESPONSE = await viewTokenURIForPoap(signer, token.id);
+    console.log("URL_RESPONSE", URL_RESPONSE);
+    const poapsResponse = await getPoapsByIPFS(URL_RESPONSE.slice(7));
+    console.log("poapsResponse", poapsResponse);
+  }
+};
 const Profile = () => {
+  const walletState = useSelector(selectWallet);
+
+  const [walletStateData, setWalletStateData] = useState();
+  const [userPoaps, setUserPoaps] = useState<any[]>([]);
+  const [tokens, setTokens] = useState<{ id: string }[]>();
+
+  // lamda functin -> json -> ipfs updlopad url -> metadaURI, signature ->
+  useEffect(() => {
+    //first get tokens
+    getTokensPerWallet(contractAddress).then((result) => {
+      console.log("tokens", result);
+      const tokens = result.data.data.account.tokens;
+      setTokens([...tokens]);
+      console.log("tokens", tokens);
+      getTokenURI(tokens, walletState.signer);
+    });
+
+    // second get poaps
+    // viewTokenURI(walletState.signer).then(async (URL_RESPONSE) => {
+    //   console.log("URL_RESPONSE", URL_RESPONSE);
+    //   const poapsResponse = await getPoapsByIPFS(URL_RESPONSE.slice(7));
+    //   console.log("poapsResponse", poapsResponse);
+    // });
+    // console.log("walletState", walletState);
+    // setUserPoaps([...userPoaps]);
+    // console.log("userPoaps", userPoaps);
+  }, []);
+
   return (
     <>
       <OutmostWrapper>

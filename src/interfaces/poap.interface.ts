@@ -1,10 +1,16 @@
 export interface ITokensResponse {
     data: {
-        account: ITokensRequest
+        data: {
+            account: ITokensRequest
+        }
     }
 }
 export interface ITokensRequest {
     id: string;
-    tokens: string[]
+    tokens: Token[]
     tokensOwned: number;
+}
+
+interface Token {
+    id: string
 }
