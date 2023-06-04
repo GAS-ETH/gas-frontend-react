@@ -9,8 +9,6 @@ import user1 from './assets/user_1.svg';
 import user2 from './assets/user_2.svg';
 import { Event } from './types';
 import cuid from 'cuid';
-import { Outlet } from 'react-router-dom';
-import Events from './components/Events';
 import EventsPage from './pages/EventsPage';
 import EventDetailsPage from './pages/EventDetailsPage';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
@@ -129,11 +127,15 @@ const router = createBrowserRouter([
     path: '/',
     element: <ResponsiveDrawer />,
     children: [
-      // { index: true, element: <HomePage /> },
+      { index: true, element: <EventsPage /> },
       { path: 'dashboard', element: <DashboardPage /> },
       { path: 'events', element: <EventsPage /> },
       { path: 'messages', element: <MessagesPage /> },
-      { path: 'profile', element: <ProfilePage /> },
+      {
+        path: 'profile',
+        element: <ProfilePage />,
+        children: [{ path: 'events', element: <EventsPage /> }],
+      },
       { path: 'events/:eventId', element: <EventDetailsPage /> },
       // { path: 'products/:productId', element: <ProductDetailPage /> },
     ],

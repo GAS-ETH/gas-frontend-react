@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import logo from '../assets/personal-center-human-shape.png';
+import events from '../App';
+import buterin from '../assets/Vitalik-Buterin.png';
+
+import { Outlet } from 'react-router-dom';
 
 const OutmostWrapper = styled.div`
   display: flex;
@@ -7,6 +10,8 @@ const OutmostWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 20px;
+  flex-direction: row;
+  gap: 40px;
 `;
 
 const MainWrapper = styled.div`
@@ -14,11 +19,32 @@ const MainWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1000px;
-  justify-content: center;
-  padding: 20px;
-  border: 2px solid black;
+  justify-content: start;
+  padding: 30px;
+  align-items: start;
+  border: 1px solid black;
   border-radius: 10px;
   gap: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-height: 247px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: start;
+  padding: 30px;
+  align-items: start;
+  border-radius: 10px;
+  gap: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-height: 247px;
 `;
 
 const LogoWrapper = styled.div`
@@ -27,55 +53,72 @@ const LogoWrapper = styled.div`
   align-items: center;
   border-radius: 50%;
   background-color: red;
-  width: 40px;
-  height: 40px;
+  width: 250px;
+  height: 250px;
 `;
 
 const Logo = styled.img.attrs({
-  src: logo,
-  width: '100%',
-  height: '100%',
+  src: buterin,
+  width: '250px',
 })``;
 
 const UserInfo = styled.div`
   display: flex;
-  align-items: center;
   gap: 20px;
   width: 100%;
+  flex-direction: column;
 `;
 
 const Username = styled.p`
-  font-size: 35px;
-  font-weight: bold;
+  font-family: Abel;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+`;
+
+const Points = styled.span`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  color: #7e7e7e;
 `;
 
 const Activity = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 10px 20px;
-  justify-content: space-between;
-  border: 3px solid gray;
-  border-radius: 8px;
+  justify-content: start;
 `;
 
 const TagWrapper = styled.div`
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const Title = styled.p`
-  color: black;
-  font-size: 20px;
+  color: #ed1c24;
+  font-style: normal;
   font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #ff0000;
 `;
 
 const Amount = styled.div`
   border-radius: 8px;
   padding: 3px 8px;
   width: auto;
-  background-color: blue;
-  color: white;
+  color: #2ea7e0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 42px;
 `;
 
 const BioSection = styled.div`
@@ -85,19 +128,23 @@ const BioSection = styled.div`
 `;
 
 const BioHeader = styled.p`
-  font-size: 25px;
-  color: black;
-  font-weight: bold;
-  padding-left: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
 `;
 
 const Bio = styled.div`
   padding: 10px 20px;
-  font-size: 16px;
-  background-color: lightgray;
-  color: black;
-  height: auto;
-  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+
+  display: flex;
+  align-items: center;
+
+  color: #7e7e7e;
 `;
 
 const CategorySection = styled.div`
@@ -168,47 +215,50 @@ const Category = styled.div`
   }
 `;
 
-const Profile = () => (
-  <OutmostWrapper>
-    <MainWrapper>
-      <UserInfo>
+const Column = styled.div`
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const Profile = () => {
+  console.log(events);
+  return (
+    <>
+      <OutmostWrapper>
         <LogoWrapper>
           <Logo />
         </LogoWrapper>
-        <Username>Orlando Garcia</Username>
-      </UserInfo>
-      <Activity>
-        <TagWrapper>
-          <Title>Attendance: </Title>
-          <Amount>66</Amount>
-        </TagWrapper>
-        <TagWrapper>
-          <Title>Reviews: </Title>
-          <Amount>99</Amount>
-        </TagWrapper>
-        <TagWrapper>
-          <Title>Events: </Title>
-          <Amount>45</Amount>
-        </TagWrapper>
-      </Activity>
-      <BioSection>
-        <BioHeader>Bio</BioHeader>
-        <Bio>
-          abcdefgh@Abcds-MacBook-Pro gas-frontend-react % git commit -m 'profile
-          photo' [main 6d5d9b2] profile photo 7 files changed, 189
-          insertions(+), 73 deletions(-) create mode 100644
-          src/assets/personal-center-human-shape.png create mode 100644
-          src/assets/profile_pic.jpg abcdefgh@Abcds-MacBook-Pro
-          gas-frontend-react % git push Enumerating objects: 21, done. Counting
-          objects: 100% (21/21), done. Delta compression using up to 12 threads
-          Compressing objects: 100% (11/11), done. Writing objects: 100%
-          (12/12), 164.93 KiB | 32.99 MiB/s, done. Total 12 (delta 4), reused 0
-          (delta 0), pack-reused 0 remote: Resolving deltas: 100% (4/4),
-          completed with 4 local objects. To
-          https://github.com/GAS-ETH/gas-frontend-react
-        </Bio>
-      </BioSection>
-      <CategorySection>
+        <Column>
+          <Wrapper>
+            <UserInfo>
+              <Username>Vitalik Buterin</Username>
+              <Points>3000 pts</Points>
+            </UserInfo>
+            <Activity>
+              <TagWrapper>
+                <Title>Attendance: </Title>
+                <Amount>66</Amount>
+              </TagWrapper>
+              <TagWrapper>
+                <Title>Reviews: </Title>
+                <Amount>99</Amount>
+              </TagWrapper>
+              <TagWrapper>
+                <Title>Hosted Events: </Title>
+                <Amount>45</Amount>
+              </TagWrapper>
+            </Activity>
+          </Wrapper>
+          <Wrapper>
+            <BioSection>
+              <BioHeader>Bio</BioHeader>
+              <Bio>Founder of Solana</Bio>
+            </BioSection>
+          </Wrapper>
+        </Column>
+        {/* <CategorySection>
         <CategoryHeader>Category</CategoryHeader>
         <SearchSection>
           <Input />
@@ -241,8 +291,10 @@ const Profile = () => (
           <Category>My place-5</Category>
           <Category>Your place-5</Category>
         </Suggestions>
-      </CategorySection>
-    </MainWrapper>
-  </OutmostWrapper>
-);
+      </CategorySection> */}
+      </OutmostWrapper>
+      <Outlet />
+    </>
+  );
+};
 export default Profile;
