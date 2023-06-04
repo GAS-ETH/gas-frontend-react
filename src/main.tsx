@@ -2,23 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ReviewModal } from './components/ReviewModal.tsx';
-
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <App />,
-//   },
-//   {
-//     path: '/review',
-//     element: <ReviewModal />,
-//   },
-// ]);
+import store from './store/Store.ts';
+import Provider from 'react-redux';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    {/* <RouterProvider router={router} /> */}
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
