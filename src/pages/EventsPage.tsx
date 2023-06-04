@@ -11,13 +11,13 @@ const MainWrapper = styled.div`
   background-color: #f8f8fa;
 `;
 
-const Section = styled.div`
+export const Section = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
 `;
 
-const SectionHeader = styled.p`
+export const SectionHeader = styled.p`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -26,7 +26,7 @@ const SectionHeader = styled.p`
   margin-left: 20px;
 `;
 
-const BlueSpan = styled.span`
+export const BlueSpan = styled.span`
   color: #38b6ff;
 `;
 

@@ -27,6 +27,8 @@ import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
+const routs = ['dashboard', 'events', 'messages', 'profile/eventas'];
+
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -131,8 +133,8 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Events', 'Messages', 'Profile'].map((text) => (
-            <NavLink to={`/${text.toLocaleLowerCase()}`}>
+          {['Dashboard', 'Events', 'Messages', 'Profile'].map((text, index) => (
+            <NavLink to={`/${routs[index]}`}>
               <ListItem key={text} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>

@@ -16,6 +16,47 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage';
 import MessagesPage from './pages/MessagesPage';
 import ProfilePage from './pages/ProfilePage';
+import Events from './components/Events';
+
+// function ImageBox() {
+//   return (
+//     <div style={{ display: 'flex', width: 'auto' }}>
+//       {events[0].participantsImages.slice(0, 4).map((url) => (
+//         <img
+//           style={{
+//             border: '3px solid #F8F8FA',
+//             marginLeft: '-10px',
+//             borderRadius: '50%',
+//           }}
+//           src={url}
+//         />
+//       ))}
+//       <div
+//         style={{
+//           display: 'flex',
+//           minHeight: '46px',
+//           minWidth: '46px',
+//           justifyContent: 'center',
+//           alignItems: 'center',
+//           border: '3px solid #ffffff',
+//           backgroundColor: '#F8F8FA',
+//           marginLeft: '-10px',
+//           borderRadius: '50%',
+//         }}
+//       >
+//         <span
+//           style={{
+//             color: '#FF3131',
+//             fontWeight: 700,
+//           }}
+//         >
+//           +{events[0].participantsImages.length - 3}
+//         </span>
+//       </div>
+//     </div>
+//   );
+// }
+
 export const events: Event[] = [
   {
     img: poap0,
@@ -83,45 +124,6 @@ export const events: Event[] = [
   },
 ];
 
-// function ImageBox() {
-//   return (
-//     <div style={{ display: 'flex', width: 'auto' }}>
-//       {events[0].participantsImages.slice(0, 4).map((url) => (
-//         <img
-//           style={{
-//             border: '3px solid #F8F8FA',
-//             marginLeft: '-10px',
-//             borderRadius: '50%',
-//           }}
-//           src={url}
-//         />
-//       ))}
-//       <div
-//         style={{
-//           display: 'flex',
-//           minHeight: '46px',
-//           minWidth: '46px',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//           border: '3px solid #ffffff',
-//           backgroundColor: '#F8F8FA',
-//           marginLeft: '-10px',
-//           borderRadius: '50%',
-//         }}
-//       >
-//         <span
-//           style={{
-//             color: '#FF3131',
-//             fontWeight: 700,
-//           }}
-//         >
-//           +{events[0].participantsImages.length - 3}
-//         </span>
-//       </div>
-//     </div>
-//   );
-// }
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -134,7 +136,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <ProfilePage />,
-        children: [{ path: 'events', element: <EventsPage /> }],
+        children: [{ path: 'eventas', element: <Events events={events} /> }],
       },
       { path: 'events/:eventId', element: <EventDetailsPage /> },
       // { path: 'products/:productId', element: <ProductDetailPage /> },

@@ -1,17 +1,18 @@
 import styled from 'styled-components';
-import events from '../App';
 import buterin from '../assets/Vitalik-Buterin.png';
 
 import { Outlet } from 'react-router-dom';
+import { BlueSpan, Section, SectionHeader } from './EventsPage';
 
 const OutmostWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-top: 20px;
   flex-direction: row;
   gap: 40px;
+  margin-bottom: 60px;
 `;
 
 const MainWrapper = styled.div`
@@ -223,7 +224,6 @@ const Column = styled.div`
 `;
 
 const Profile = () => {
-  console.log(events);
   return (
     <>
       <OutmostWrapper>
@@ -293,7 +293,12 @@ const Profile = () => {
         </Suggestions>
       </CategorySection> */}
       </OutmostWrapper>
-      <Outlet />
+      <Section>
+        <SectionHeader>
+          <BlueSpan>Events</BlueSpan> Participated
+        </SectionHeader>
+        <Outlet />
+      </Section>
     </>
   );
 };
