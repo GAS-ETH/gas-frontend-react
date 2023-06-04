@@ -50,15 +50,16 @@ export const connectWallet = async (
 
 const connectGnosis = async () => {
   try {
-    await (window as any).ethereum.request({
+    const responseEth = await (window as any).ethereum.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: utils.hexValue(100) }], // chainId must be in hexadecimal numbers
     });
+    console.log("response", responseEth);
     return true;
   } catch (error: any) {
     if (error.code === 4902) {
       try {
-        await (window as any).ethereum.request({
+        const responseEth = await (window as any).ethereum.request({
           method: "wallet_addEthereumChain",
           params: [
             {
@@ -74,6 +75,7 @@ const connectGnosis = async () => {
             },
           ],
         });
+        console.log("response", responseEth);
         return true;
       } catch (addError) {
         // handle "add" error

@@ -14,6 +14,7 @@ import {
 } from "./../store/slices/wallet.slice";
 import { useDispatch } from "react-redux";
 
+import { useNavigate } from "react-router-dom";
 interface WalletResponse {
   connectedStatus: boolean;
   status: string;
@@ -21,6 +22,7 @@ interface WalletResponse {
 }
 export const SignUp = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [provider, setProvider] = useState<any | null>(null);
   const [signer, setSigner] = useState<any | null>(null);
@@ -47,6 +49,7 @@ export const SignUp = () => {
       // set data in the state
       dispatch(ReduxSetProvider(connectWalletResponse.data.provider));
       dispatch(ReduxSetSigner(connectWalletResponse.data.signer));
+      navigate("/dashboard");
     }
   };
 

@@ -1,9 +1,24 @@
-import styled from 'styled-components';
-import buterin from '../assets/Vitalik-Buterin.png';
+import styled from "styled-components";
+import buterin from "../assets/Vitalik-Buterin.png";
 
-import { Outlet } from 'react-router-dom';
-import { BlueSpan, Section, SectionHeader } from './EventsPage';
+import { Outlet } from "react-router-dom";
+import { BlueSpan, Section, SectionHeader } from "./EventsPage";
+import logo from "../assets/personal-center-human-shape.png";
+import { useEffect, useState } from "react";
+import { viewTokenURI } from "../services/wallet/ethers";
+import store from "./../store/Store";
+import { useSelector } from "react-redux";
+import { getPoapsByIPFS, getTokensPerWallet } from "../services/poap/poap.http";
 
+// TODO: GET REAL ADDRESS
+// const contractAddress = "0x7bcf50180aa066c2a9313ab019fcb2c1da432dd6";
+const contractAddress = "0x4DfAB1fBB08289218eA8301358869a556644Aa2D";
+// const contractAddress = "0x64Df6edb98c1417c90E2E596fd50595563Ea512d";
+
+//view token uir
+// token -> address
+
+const selectWallet = (state: any) => state.wallet;
 const OutmostWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -59,8 +74,9 @@ const LogoWrapper = styled.div`
 `;
 
 const Logo = styled.img.attrs({
-  src: buterin,
-  width: '250px',
+  src: logo,
+  width: "100%",
+  height: "100%",
 })``;
 
 const UserInfo = styled.div`

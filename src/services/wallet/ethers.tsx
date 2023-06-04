@@ -7,6 +7,6 @@ export const viewTokenURI = async (signer: any) => {
     gas_abi,
     signer
   );
-  const result = await contractInstance.tokenURI(0);
+  const result = await contractInstance.tokenURI(3);
   return result;
 };
