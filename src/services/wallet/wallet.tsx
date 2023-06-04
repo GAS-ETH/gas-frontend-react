@@ -13,6 +13,7 @@ export const connectWallet = async (
         return {
           connectedStatus: false,
           status: "🦊 Error happened while adding the chain into your wallet",
+          data: null,
         };
       }
       await (window as any).ethereum.send("eth_requestAccounts", []);
@@ -25,11 +26,16 @@ export const connectWallet = async (
       return {
         connectedStatus: true,
         status: "🦊 Connected to Metamask",
+        data: {
+          provider,
+          signer,
+        },
       };
     } catch (error) {
       return {
         connectedStatus: false,
         status: "🦊 Connect to Metamask using the button on the top right.",
+        data: null,
       };
     }
   } else {
@@ -37,6 +43,7 @@ export const connectWallet = async (
       connectedStatus: false,
       status:
         "🦊 You must install Metamask into your browser: https://metamask.io/download.html",
+      data: null,
     };
   }
 };

@@ -1,18 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import styled from "styled-components";
 import { WelcomeSideBar } from "../components/WelcomeSideBar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import GasLogo from "./../assets/gas.png";
-import { connectWallet } from "../wallet/wallet.jsx";
+import { connectWallet } from "../services/wallet/wallet";
 
 import { Alert, styled as MuiStyled } from "@mui/material";
 import { useState } from "react";
+import {
+  setProvider as ReduxSetProvider,
+  setSigner as ReduxSetSigner,
+} from "./../store/slices/wallet.slice";
+import { useDispatch } from "react-redux";
 
 interface WalletResponse {
   connectedStatus: boolean;
   status: string;
+  data: any;
 }
 export const SignUp = () => {
+  const dispatch = useDispatch();
+
   const [provider, setProvider] = useState<any | null>(null);
   const [signer, setSigner] = useState<any | null>(null);
 
@@ -23,16 +32,21 @@ export const SignUp = () => {
   };
   const goToConnectWallet = async () => {
     // direct user to connect to wallet
-    console.log("sss");
     const connectWalletResponse: WalletResponse = await connectWallet(
       setProvider,
       setSigner
     );
     console.log("connectWalletResponse", connectWalletResponse);
 
-    console.log("provider", provider, "signer", signer);
+    // console.log();
     if (!connectWalletResponse || !connectWalletResponse.connectedStatus) {
       alert(connectWalletResponse?.status);
+    }
+    // make test
+    if (connectWalletResponse?.data) {
+      // set data in the state
+      dispatch(ReduxSetProvider(connectWalletResponse.data.provider));
+      dispatch(ReduxSetSigner(connectWalletResponse.data.signer));
     }
   };
 
