@@ -59,8 +59,8 @@ const PromoImg = styled.img.attrs({
 
 const PromoTexts = styled.div`
   position: absolute;
-  top: 30px;
-  left 20px;
+  top: 50px;
+  left 40px;
   max-width: 500px;
 `;
 const Header = styled.p`
@@ -70,7 +70,7 @@ const Header = styled.p`
   font-size: 64px;
   line-height: 82px;
   font-family: 'Abel';
-  margin-bottom: 25px;
+  margin-bottom: 46px;
 `;
 
 const Description = styled.p`
@@ -80,7 +80,7 @@ const Description = styled.p`
   font-weight: 400;
   font-size: 36px;
   line-height: 46px;
-  margin-bottom: 36px;
+  margin-bottom: 46px;
 `;
 
 const Preview = styled.p`
@@ -90,7 +90,7 @@ const Preview = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 46px;
 `;
 
 const PinMapWrapper = styled.div`
@@ -108,6 +108,24 @@ const Span = styled.span`
   font-size: 18px;
   line-height: 23px;
 `;
+
+const DateTime = styled.div`
+  width: 385px;
+  padding: 30px;
+  background: #ffffff;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const BookNow = styled.button`
+  height: 50px;
+`;
+
+const ProgramPromoter = styled.div``;
 
 const EventDetailsPage = (props: Props) => {
   return (

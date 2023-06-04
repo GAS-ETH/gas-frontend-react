@@ -9,11 +9,15 @@ import user1 from './assets/user_1.svg';
 import user2 from './assets/user_2.svg';
 import { Event } from './types';
 import cuid from 'cuid';
+import { Outlet } from 'react-router-dom';
 import Events from './components/Events';
 import EventsPage from './pages/EventsPage';
-import MiniDrawer from './components/MiniDrawer';
 import EventDetailsPage from './pages/EventDetailsPage';
-
+import ResponsiveDrawer from './components/ResponsiveDrawer';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import DashboardPage from './pages/DashboardPage';
+import MessagesPage from './pages/MessagesPage';
+import ProfilePage from './pages/ProfilePage';
 export const events: Event[] = [
   {
     img: poap0,
@@ -120,11 +124,24 @@ export const events: Event[] = [
 //   );
 // }
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <ResponsiveDrawer />,
+    children: [
+      // { index: true, element: <HomePage /> },
+      { path: 'dashboard', element: <DashboardPage /> },
+      { path: 'events', element: <EventsPage /> },
+      { path: 'messages', element: <MessagesPage /> },
+      { path: 'profile', element: <ProfilePage /> },
+      { path: 'events/:eventId', element: <EventDetailsPage /> },
+      // { path: 'products/:productId', element: <ProductDetailPage /> },
+    ],
+  },
+]);
+
 function App() {
-  // return <Events events={events} />;
-  // return <ImageBox />;
-  // return <EventsPage />;
-  return <EventDetailsPage />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
